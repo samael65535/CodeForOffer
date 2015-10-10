@@ -1,6 +1,4 @@
 // add your events or helpers here
-Shortener = new Meteor.Collection("shortener");
-
 Template.shortener.events({
     'click #submit': function (evt) {
         var $post = $('#origin_url').val();
@@ -10,19 +8,13 @@ Template.shortener.events({
         }
         Shortener.insert({url:$post,  time: new Date()}, function(err, id) {
             if (err) {
+                console.log(err.reason);
                 Session.set("info", {success:"", error: err.reason});
                 return;
             }
-            Session.set("info", {success:"true", error: "", tinny_url: id});
+            console.log(id);
+            Session.set("info", {success:"true", error: "", tiny_url: id});
             //
         });
-    }
-});
-
-
-Template.shortener.tinyURL({
-    "tinyURL": function() {
-        var originUrl = $('#origin_url').val();
-        return Shortener.find({"url": originUrl});
     }
 });

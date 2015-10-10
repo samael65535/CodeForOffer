@@ -3,6 +3,10 @@ Router.configure({
 });
 
 Router.map(function(){
-	//Route
+	// Route
 	this.route('/',{path:'/',template:'shortener'});
+	// 路由转向
+	this.route("/:short_url", function() {
+		console.log(this.params.short_url);
+	})
 });
